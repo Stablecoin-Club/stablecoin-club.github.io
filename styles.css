@@ -1,0 +1,259 @@
+:root {
+    --bg-color: #121a14;
+    --primary-text: #74f198;
+    --secondary-text: #ffffff;
+    --accent-color: #00ffff;
+    --cursor-color: #74f198;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--secondary-text);
+    font-family: 'VT323', 'Consolas', 'Courier New', monospace;
+    line-height: 1.6;
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.terminal-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: rgba(18, 26, 20, 0.95);
+    padding: 1rem;
+    border-bottom: 1px solid var(--primary-text);
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.terminal-header h1 {
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+.terminal-controls {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.terminal-control {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: 1px solid var(--primary-text);
+}
+
+.terminal-control.close { background: #ff5f56; }
+.terminal-control.minimize { background: #ffbd2e; }
+.terminal-control.maximize { background: #27c93f; }
+
+.content {
+    margin-top: 4rem;
+}
+
+h1, h2, h3 {
+    color: var(--primary-text);
+    margin: 1.5rem 0 1rem;
+}
+
+h1 {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+h2 {
+    font-size: 1.8rem;
+    position: relative;
+    display: inline-block;
+}
+
+h2::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--primary-text);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+h2:hover::after {
+    transform: scaleX(1);
+}
+
+h3 {
+    font-size: 1.4rem;
+}
+
+p, ul, ol {
+    margin-bottom: 1rem;
+}
+
+ul, ol {
+    margin-left: 2rem;
+}
+
+li {
+    margin-bottom: 0.5rem;
+    position: relative;
+    transition: transform 0.2s ease;
+}
+
+li:hover {
+    transform: translateX(5px);
+}
+
+a {
+    color: var(--accent-color);
+    text-decoration: none;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: var(--accent-color);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+a:hover::after {
+    transform: scaleX(1);
+}
+
+.section {
+    margin-bottom: 3rem;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.5s ease;
+}
+
+.section.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.contributor {
+    margin: 1rem 0;
+    padding: 0.5rem;
+    border: 1px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.contributor:hover {
+    border-color: var(--accent-color);
+    background: rgba(0, 255, 255, 0.1);
+}
+
+.typing-effect {
+    display: inline-block;
+    position: relative;
+}
+
+.typing-effect::after {
+    content: '';
+    position: absolute;
+    right: -2px;
+    top: 0;
+    height: 100%;
+    width: 2px;
+    background: var(--cursor-color);
+    animation: blink 0.7s infinite;
+}
+
+@keyframes blink {
+    50% { opacity: 0; }
+}
+
+.feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.feature-card {
+    border: 1px solid var(--primary-text);
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(116, 241, 152, 0.2);
+}
+
+.roadmap-timeline {
+    position: relative;
+    padding-left: 2rem;
+    margin: 2rem 0;
+}
+
+.roadmap-timeline::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: var(--primary-text);
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 2rem;
+    padding-left: 2rem;
+}
+
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -9px;
+    top: 0;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--bg-color);
+    border: 2px solid var(--primary-text);
+}
+
+@media (max-width: 768px) {
+    body {
+        padding: 1rem;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+
+    h3 {
+        font-size: 1.2rem;
+    }
+
+    .feature-grid {
+        grid-template-columns: 1fr;
+    }
+} 
